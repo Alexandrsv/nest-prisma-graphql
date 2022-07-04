@@ -4,6 +4,8 @@
 
 type GymEntity {
   id: Int!
+
+  """Название спортивного зала"""
   name: String!
   address: String!
   yogaClasses: Boolean!
@@ -16,11 +18,21 @@ type Query {
 
 type Mutation {
   createGym(gym: CreateGymDto!): GymEntity!
+  updateGym(id: Float!, gym: UpdateGymDto!): GymEntity!
 }
 
 input CreateGymDto {
+  """Название спортивного зала"""
   name: String!
   address: String!
   yogaClasses: Boolean!
   owner: String!
+}
+
+input UpdateGymDto {
+  """Название спортивного зала"""
+  name: String
+  address: String
+  yogaClasses: Boolean
+  owner: String
 }

@@ -1,20 +1,19 @@
-import {Field, Int, ObjectType} from "@nestjs/graphql";
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class GymEntity {
-  @Field(()=>Int)
+  @Field(() => Int)
   id: number;
 
-  @Field(()=>String)
+  @Field(() => String, { description: 'Название спортивного зала' })
   name: string;
 
-  @Field(()=>String)
+  @Field(() => String)
   address: string;
 
-  @Field(()=>Boolean)
+  @Field(() => Boolean)
   yogaClasses: boolean;
 
-  @Field(()=>String)
+  @Field(() => String)
   owner: string;
-
 }

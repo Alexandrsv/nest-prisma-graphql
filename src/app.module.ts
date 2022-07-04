@@ -4,13 +4,14 @@ import { DatabaseService } from './database/database.service';
 import { DatabaseModule } from './database/database.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
-import { ApolloDriver } from '@nestjs/apollo';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    GraphQLModule.forRoot({
+    GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      cors: true,
     }),
     GymModule,
     DatabaseModule,
