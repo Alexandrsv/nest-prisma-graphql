@@ -1,9 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import {GymEntity} from "./entities/gym.entity";
+import { GymEntity } from './entities/gym.entity';
+import { DatabaseService } from '../database/database.service';
 
 @Injectable()
 export class GymService {
-  async getAllGyms(): Promise<GymEntity> {
-    return {} as GymEntity;}
+  constructor(private readonly databaseService: DatabaseService) {}
 
+  async getAllGyms(): Promise<GymEntity[]> {
+    return await this.databaseService.gym.findMany();
+  }
 }
