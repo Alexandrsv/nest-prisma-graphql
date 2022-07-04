@@ -1,6 +1,7 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { GymEntity } from './entities/gym.entity';
 import { GymService } from './gym.service';
+import { CreateGymDto } from './entities/dtos/create-gym.dto';
 
 @Resolver(() => GymEntity)
 export class GymResolver {
@@ -9,5 +10,10 @@ export class GymResolver {
   @Query(() => [GymEntity])
   async getAllGyms(): Promise<GymEntity[]> {
     return await this.gymService.getAllGyms();
+  }
+
+  @Mutation(() => GymEntity)
+  async createGym(@Args('gym') gym: CreateGymDto): Promise<GymEntity> {
+    return await this.gymService.createGym(gym);
   }
 }

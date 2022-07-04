@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { GymEntity } from './entities/gym.entity';
 import { DatabaseService } from '../database/database.service';
+import { CreateGymDto } from './entities/dtos/create-gym.dto';
 
 @Injectable()
 export class GymService {
@@ -8,5 +9,9 @@ export class GymService {
 
   async getAllGyms(): Promise<GymEntity[]> {
     return await this.databaseService.gym.findMany();
+  }
+
+  async createGym(gym: CreateGymDto): Promise<GymEntity> {
+    return await this.databaseService.gym.create({ data: gym });
   }
 }

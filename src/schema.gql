@@ -13,3 +13,14 @@ type GymEntity {
 type Query {
   getAllGyms: [GymEntity!]!
 }
+
+type Mutation {
+  createGym(gym: CreateGymDto!): GymEntity!
+}
+
+input CreateGymDto {
+  name: String!
+  address: String!
+  yogaClasses: Boolean!
+  owner: String!
+}
